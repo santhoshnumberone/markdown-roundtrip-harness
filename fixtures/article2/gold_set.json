@@ -1,0 +1,96 @@
+{
+  "document": "api_spec.md",
+  "note": "expected_operations uses the real node ids produced by document_view.py against the actual api_spec.md in this repo. Regenerate this file's ids if the source document changes. Optional per-operation keys used by score.py: must_contain (text fragments an inserted node must include) and accept (alternative operations that count as equivalent; here: inserting after the last item of the list is the same edit as appending to the list).",
+  "cases": [
+    {
+      "case_id": "update_01",
+      "category": "Update",
+      "instruction": "Change the Pro tier's rate limit to 2000 requests per minute.",
+      "expected_abstain": false,
+      "expected_operations": [
+        { "op": "Update", "target": "tbl1", "field": "Pro.Requests/min", "value": "2000" }
+      ]
+    },
+    {
+      "case_id": "delete_01",
+      "category": "Delete",
+      "instruction": "Remove the legacy API-key warning under Authentication.",
+      "expected_abstain": false,
+      "expected_operations": [
+        { "op": "Delete", "target": "bq1" }
+      ]
+    },
+    {
+      "case_id": "insert_01",
+      "category": "Insert",
+      "instruction": "Add a 503 error code to the Error Codes list, meaning the server is temporarily overloaded.",
+      "expected_abstain": false,
+      "expected_operations": [
+        { "op": "Insert", "parent": "lst4", "position": "end", "node": { "kind": "list_item", "text": "`503` — service temporarily overloaded" },
+          "must_contain": ["503"],
+          "accept": [ { "op": "Insert", "parent": "li13", "position": "after" } ] }
+      ]
+    },
+    {
+      "case_id": "move_01",
+      "category": "Move",
+      "instruction": "Move the Authentication section so it appears before Overview.",
+      "expected_abstain": null,
+      "expected_operations": null,
+      "known_gap": "The Document model is a FLAT node list; a heading 'section' is an implicit range (h3..everything up to the next heading with level <= 2), not a single node or a children-bearing container. Single-target Move (as scoped in Phase B) cannot express 'move a section' without either (a) a MoveRange primitive taking a start/end id pair, or (b) the Planner decomposing this into N individual Move ops (h3, p3, bq1, h4, lst1) with the Applier preserving relative order. This case is scored qualitatively, not against a fixed expected answer — see harness README."
+    },
+    {
+      "case_id": "multi_op_01",
+      "category": "multi-operation",
+      "instruction": "Increase the Pro tier's rate limit to 2000 requests per minute and add a 503 error code to the Error Codes list.",
+      "expected_abstain": false,
+      "expected_operations": [
+        { "op": "Update", "target": "tbl1", "field": "Pro.Requests/min", "value": "2000" },
+        { "op": "Insert", "parent": "lst4", "position": "end", "node": { "kind": "list_item", "text": "`503` — service temporarily overloaded" },
+          "must_contain": ["503"],
+          "accept": [ { "op": "Insert", "parent": "li13", "position": "after" } ] }
+      ]
+    },
+    {
+      "case_id": "ambiguous_01",
+      "category": "ambiguous",
+      "instruction": "Update the rate limit.",
+      "expected_abstain": true,
+      "expected_operations": [],
+      "why": "Doesn't specify which tier or what new value."
+    },
+    {
+      "case_id": "contradictory_01",
+      "category": "negative/contradictory",
+      "instruction": "Set the Free tier's rate limit to both 100 and 200 requests per minute.",
+      "expected_abstain": true,
+      "expected_operations": [],
+      "why": "Self-contradictory target value."
+    },
+    {
+      "case_id": "irrelevant_01",
+      "category": "irrelevant",
+      "instruction": "What does the pagination guide linked under List Payments cover?",
+      "expected_abstain": true,
+      "expected_operations": [],
+      "why": "A question, not an edit instruction; the linked content isn't even in the document."
+    },
+    {
+      "case_id": "boundary_redundant_01",
+      "category": "boundary (no-op)",
+      "instruction": "Set the Free tier's rate limit to 100 requests per minute.",
+      "expected_abstain": true,
+      "expected_operations": [],
+      "why": "Already 100 in tbl1 — instruction is already satisfied.",
+      "soft_fail_note": "A model that instead emits a redundant Update with value=100 is not scored as a hard failure (it's a defensible reading), but is logged as a distinct 'redundant-op emitted' metric — see score.py."
+    },
+    {
+      "case_id": "boundary_nonexistent_01",
+      "category": "boundary (nonexistent target)",
+      "instruction": "Update the WebSocket endpoint's rate limit to 500 requests per minute.",
+      "expected_abstain": true,
+      "expected_operations": [],
+      "why": "No WebSocket endpoint exists anywhere in the document. A model that invents a target id here is hallucinating, not just wrong."
+    }
+  ]
+}

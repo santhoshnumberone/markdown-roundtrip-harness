@@ -1,0 +1,683 @@
+{
+  "engine": {
+    "file": "MarkdownParser.py",
+    "bytes": 11868,
+    "sha256": "9fc96532fb57"
+  },
+  "environment": {
+    "python": "3.10.20",
+    "markdown-it-py": "4.2.0",
+    "linkify-it-py": "2.2.0"
+  },
+  "cases": [
+    {
+      "group": "doc",
+      "name": "api_spec.md",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "adjacent_lists_markers",
+      "l0": false,
+      "l1": false,
+      "o": false,
+      "t": true,
+      "diagnostics": [],
+      "changes": [
+        "p +2",
+        "ul -1"
+      ],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "blockquote_code",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "blockquote_nested",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "blockquote_two_lines",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "blockquote_two_paragraphs",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "blockquote_with_list",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "empty_list_item",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "escapes_and_entities",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "footnote_definition",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "hard_break",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "hr_asterisks",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "hr_inside_blockquote",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "hr_variants",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "html_block_div",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "html_comment",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "indented_code",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "inline_markup",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "lazy_line_looks_like_table",
+      "l0": false,
+      "l1": false,
+      "o": false,
+      "t": true,
+      "diagnostics": [],
+      "changes": [
+        "table +1",
+        "th +1",
+        "thead +1",
+        "tr +1"
+      ],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "lazy_line_looks_like_table_in_item",
+      "l0": false,
+      "l1": false,
+      "o": false,
+      "t": true,
+      "diagnostics": [],
+      "changes": [
+        "table +1",
+        "th +1",
+        "thead +1",
+        "tr +1"
+      ],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "list_item_blockquote",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "list_item_starts_with_code",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "list_item_table",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "list_item_two_paragraphs",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "list_item_with_code",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "list_then_fence",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "loose_list",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "loose_list_nested",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "mixed_nesting",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "nested_fence",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "nested_fence_4_backticks",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "ordered_item_10_nested",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "ordered_nine_to_ten",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "ordered_start_at_0",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "ordered_start_at_3",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "reference_link",
+      "l0": false,
+      "l1": true,
+      "o": false,
+      "t": true,
+      "diagnostics": [
+        "line 3 is not part of any block: '[g]: https://example.com/guide'"
+      ],
+      "changes": [
+        "a -1"
+      ],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "setext_heading_trailing_hash",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "setext_heading_two_lines",
+      "l0": false,
+      "l1": true,
+      "o": false,
+      "t": true,
+      "diagnostics": [],
+      "changes": [
+        "text: '<h1>Line one' -> '<h1>Line one line two</h1>'"
+      ],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "setext_headings",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "star_bullets",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "table_alignment",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "table_center_alignment",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "table_escaped_pipe",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "table_ragged_rows",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "task_list",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "three_deep_lists",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "crlf_line_endings",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "no_trailing_newline",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    },
+    {
+      "group": "construct",
+      "name": "empty_document",
+      "l0": false,
+      "l1": true,
+      "o": true,
+      "t": true,
+      "diagnostics": [],
+      "changes": [],
+      "lacks": {},
+      "error": ""
+    }
+  ],
+  "ids": {
+    "api_spec.md": {
+      "nodes": 46,
+      "unique": true,
+      "gaps": {},
+      "out_of_order": {},
+      "shift": {
+        "paragraph": {
+          "moved": 7,
+          "of": 46
+        },
+        "heading": {
+          "moved": 11,
+          "of": 46
+        }
+      }
+    }
+  },
+  "parity": {
+    "nodes": [
+      46,
+      46
+    ],
+    "same_id_same_position": 46,
+    "same_id_other_node": [],
+    "only_engine": [],
+    "only_reference": []
+  },
+  "simulated_regressions": [
+    {
+      "variant": "table not parsed (commonmark preset)",
+      "l0": true,
+      "l1": true,
+      "o": true,
+      "t": false,
+      "caught_by": [
+        "T"
+      ]
+    },
+    {
+      "variant": "blockquote demoted to paragraph",
+      "l0": false,
+      "l1": true,
+      "o": false,
+      "t": false,
+      "caught_by": [
+        "O",
+        "T"
+      ]
+    },
+    {
+      "variant": "nested lists dropped",
+      "l0": false,
+      "l1": true,
+      "o": false,
+      "t": false,
+      "caught_by": [
+        "O",
+        "T"
+      ]
+    }
+  ]
+}

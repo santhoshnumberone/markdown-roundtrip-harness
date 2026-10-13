@@ -1,0 +1,15 @@
+Change the Pro tier's rate limit to 2000 requests per minute.   (update_01 from Article 2's gold set)
+
+plain text replace of 1000 with 2000: 2 lines change
+   -| Pro | 1000 | 1500 |
+   -| Enterprise | 10000 | 12000 |
+   +| Pro | 2000 | 1500 |
+   +| Enterprise | 20000 | 12000 |
+
+   not asked for: | Enterprise | 10000 | 12000 |  ->  | Enterprise | 20000 | 12000 |
+
+set tbl1 cell [Pro.Requests/min] through the model: 1 cell changes
+   -| Pro | 1000 | 1500 |
+   +| Pro | 2000 | 1500 |
+   lines that differ from rendering the unedited model: 1
+   lines that differ from the original file: 2 (the extra one is the table separator row being rewritten)

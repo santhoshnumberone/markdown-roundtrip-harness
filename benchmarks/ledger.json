@@ -1,0 +1,25 @@
+{
+  "limitations": {
+    "adjacent_lists_markers": "Two adjacent lists that differ only in bullet marker are written with the same marker and read back as one list.",
+    "reference_link": "Link reference definitions are not modeled. The parser reports the line, the renderer drops it, and the link stops resolving.",
+    "setext_heading_two_lines": "A setext heading that spans two lines is written as a one-line heading with a space where the line break was.",
+    "lazy_line_looks_like_table": "Lines that continue a quote lazily (no > marker) and look like a table come back as a table. The Phase 1 renderer left continuation lines unmarked and passed this case; marking every line is what lets ordinary two-line quotes round-trip byte for byte.",
+    "lazy_line_looks_like_table_in_item": "The same for a list item: lazy lines that look like a table are indented on the way out and come back as a table. Indenting continuation lines is what lets ordinary two-line items round-trip byte for byte."
+  },
+  "normalizations": {
+    "api_spec.md": "table separator row is rewritten",
+    "crlf_line_endings": "CRLF becomes LF",
+    "empty_document": "an empty document renders as a single newline",
+    "indented_code": "an indented code block is written as a fence",
+    "list_item_table": "table separator row is rewritten",
+    "nested_fence": "a ~~~ fence is written with four backticks because the code contains ```",
+    "no_trailing_newline": "a final newline is added",
+    "setext_heading_trailing_hash": "setext headings are written as # headings; a trailing # is escaped",
+    "setext_headings": "setext headings are written as # headings",
+    "star_bullets": "* bullets become -",
+    "table_alignment": "table padding and separator rows are rewritten",
+    "table_center_alignment": "table separator row is rewritten",
+    "table_escaped_pipe": "table separator row is rewritten",
+    "table_ragged_rows": "short rows are padded to the header width; cells beyond it are dropped, as GFM ignores them"
+  }
+}

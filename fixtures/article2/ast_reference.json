@@ -1,0 +1,422 @@
+{
+  "source_hash": "a06a261344f0",
+  "nodes": [
+    {
+      "id": "h1",
+      "kind": "heading",
+      "level": 1,
+      "text": "Payments API Specification",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "p1",
+      "kind": "paragraph",
+      "level": null,
+      "text": "Version 1.2.0 \u2014 internal draft.",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "h2",
+      "kind": "heading",
+      "level": 2,
+      "text": "Overview",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "p2",
+      "kind": "paragraph",
+      "level": null,
+      "text": "This API allows clients to create, retrieve, and refund payments. All requests must be authenticated.",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "h3",
+      "kind": "heading",
+      "level": 2,
+      "text": "Authentication",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "p3",
+      "kind": "paragraph",
+      "level": null,
+      "text": "Supports **OAuth2** with the `client_credentials` grant. Tokens expire after 3600 seconds.",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "bq1",
+      "kind": "blockquote",
+      "level": null,
+      "text": "Note: API keys are legacy and will be removed in v2.0.",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "h4",
+      "kind": "heading",
+      "level": 3,
+      "text": "Required Headers",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "lst1",
+      "kind": "list",
+      "level": null,
+      "text": "",
+      "children": [
+        {
+          "id": "li1",
+          "kind": "list_item",
+          "level": null,
+          "text": "`Authorization: Bearer <token>`",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li2",
+          "kind": "list_item",
+          "level": null,
+          "text": "`Content-Type: application/json`",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li3",
+          "kind": "list_item",
+          "level": null,
+          "text": "`Idempotency-Key` (optional, recommended for `POST /payments`)",
+          "children": [],
+          "meta": {}
+        }
+      ],
+      "meta": {
+        "ordered": false
+      }
+    },
+    {
+      "id": "h5",
+      "kind": "heading",
+      "level": 2,
+      "text": "Rate Limits",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "tbl1",
+      "kind": "table",
+      "level": null,
+      "text": "Tier | Requests/min | Burst",
+      "children": [],
+      "meta": {
+        "headers": [
+          "Tier",
+          "Requests/min",
+          "Burst"
+        ],
+        "rows": [
+          [
+            "Free",
+            "100",
+            "150"
+          ],
+          [
+            "Pro",
+            "1000",
+            "1500"
+          ],
+          [
+            "Enterprise",
+            "10000",
+            "12000"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "p4",
+      "kind": "paragraph",
+      "level": null,
+      "text": "Exceeding the limit returns a `429 Too Many Requests` response.",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "h6",
+      "kind": "heading",
+      "level": 2,
+      "text": "Endpoints",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "h7",
+      "kind": "heading",
+      "level": 3,
+      "text": "Create a Payment",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "cb1",
+      "kind": "code_block",
+      "level": null,
+      "text": "POST /v1/payments",
+      "children": [],
+      "meta": {
+        "lang": "http"
+      }
+    },
+    {
+      "id": "p5",
+      "kind": "paragraph",
+      "level": null,
+      "text": "Request body:",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "cb2",
+      "kind": "code_block",
+      "level": null,
+      "text": "{\n  \"amount\": 5000,\n  \"currency\": \"usd\",\n  \"customer_id\": \"cus_123\"\n}",
+      "children": [],
+      "meta": {
+        "lang": "json"
+      }
+    },
+    {
+      "id": "p6",
+      "kind": "paragraph",
+      "level": null,
+      "text": "Response:",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "cb3",
+      "kind": "code_block",
+      "level": null,
+      "text": "{\n  \"id\": \"pay_abc\",\n  \"status\": \"pending\"\n}",
+      "children": [],
+      "meta": {
+        "lang": "json"
+      }
+    },
+    {
+      "id": "h8",
+      "kind": "heading",
+      "level": 3,
+      "text": "List Payments",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "cb4",
+      "kind": "code_block",
+      "level": null,
+      "text": "GET /v1/payments?limit=20&starting_after=pay_abc",
+      "children": [],
+      "meta": {
+        "lang": "http"
+      }
+    },
+    {
+      "id": "p7",
+      "kind": "paragraph",
+      "level": null,
+      "text": "Returns a paginated list. See [pagination guide](https://example.com/docs/pagination) for details.",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "h9",
+      "kind": "heading",
+      "level": 3,
+      "text": "Refund a Payment",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "lst2",
+      "kind": "list",
+      "level": null,
+      "text": "",
+      "children": [
+        {
+          "id": "li4",
+          "kind": "list_item",
+          "level": null,
+          "text": "Verify the payment is in `succeeded` state.",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li5",
+          "kind": "list_item",
+          "level": null,
+          "text": "Submit a refund request:",
+          "children": [
+            {
+              "id": "lst3",
+              "kind": "list",
+              "level": null,
+              "text": "",
+              "children": [
+                {
+                  "id": "li6",
+                  "kind": "list_item",
+                  "level": null,
+                  "text": "Full refund: omit `amount`.",
+                  "children": [],
+                  "meta": {}
+                },
+                {
+                  "id": "li7",
+                  "kind": "list_item",
+                  "level": null,
+                  "text": "Partial refund: include `amount` in cents.",
+                  "children": [],
+                  "meta": {}
+                }
+              ],
+              "meta": {
+                "ordered": false
+              }
+            }
+          ],
+          "meta": {}
+        },
+        {
+          "id": "li8",
+          "kind": "list_item",
+          "level": null,
+          "text": "Poll `GET /v1/refunds/{id}` until `status` is `succeeded` or `failed`.",
+          "children": [],
+          "meta": {}
+        }
+      ],
+      "meta": {
+        "ordered": true
+      }
+    },
+    {
+      "id": "cb5",
+      "kind": "code_block",
+      "level": null,
+      "text": "POST /v1/refunds",
+      "children": [],
+      "meta": {
+        "lang": "http"
+      }
+    },
+    {
+      "id": "h10",
+      "kind": "heading",
+      "level": 2,
+      "text": "Error Codes",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "lst4",
+      "kind": "list",
+      "level": null,
+      "text": "",
+      "children": [
+        {
+          "id": "li9",
+          "kind": "list_item",
+          "level": null,
+          "text": "`400` \u2014 malformed request body",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li10",
+          "kind": "list_item",
+          "level": null,
+          "text": "`401` \u2014 missing or invalid token",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li11",
+          "kind": "list_item",
+          "level": null,
+          "text": "`404` \u2014 resource not found",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li12",
+          "kind": "list_item",
+          "level": null,
+          "text": "`429` \u2014 rate limit exceeded",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li13",
+          "kind": "list_item",
+          "level": null,
+          "text": "`500` \u2014 internal server error",
+          "children": [],
+          "meta": {}
+        }
+      ],
+      "meta": {
+        "ordered": false
+      }
+    },
+    {
+      "id": "h11",
+      "kind": "heading",
+      "level": 2,
+      "text": "Changelog",
+      "children": [],
+      "meta": {}
+    },
+    {
+      "id": "lst5",
+      "kind": "list",
+      "level": null,
+      "text": "",
+      "children": [
+        {
+          "id": "li14",
+          "kind": "list_item",
+          "level": null,
+          "text": "1.2.0 \u2014 added Idempotency-Key support",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li15",
+          "kind": "list_item",
+          "level": null,
+          "text": "1.1.0 \u2014 added refund partial-amount support",
+          "children": [],
+          "meta": {}
+        },
+        {
+          "id": "li16",
+          "kind": "list_item",
+          "level": null,
+          "text": "1.0.0 \u2014 initial release",
+          "children": [],
+          "meta": {}
+        }
+      ],
+      "meta": {
+        "ordered": false
+      }
+    }
+  ]
+}

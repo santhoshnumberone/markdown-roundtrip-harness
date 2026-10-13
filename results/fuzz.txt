@@ -1,0 +1,5 @@
+benchmarks/baseline/MarkdownParser_phase1.py: 2515/3000 random documents fail L1, O or T
+  seed 0: L1 True  O False  T False  ['details -1', 'hr -1']
+  seed 1: L1 True  O False  T True  ['div -1']
+  seed 3: L1 True  O False  T True  ['details -1', 'summary -1']
+MarkdownParser.py: 0/3000 random documents fail L1, O or T

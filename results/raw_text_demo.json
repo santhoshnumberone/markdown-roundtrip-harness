@@ -1,0 +1,32 @@
+{
+  "case": "update_01",
+  "instruction": "Change the Pro tier's rate limit to 2000 requests per minute.",
+  "target": "tbl1",
+  "field": "Pro.Requests/min",
+  "old": "1000",
+  "new": "2000",
+  "raw": {
+    "lines_changed": 2,
+    "diff": [
+      "-| Pro | 1000 | 1500 |",
+      "-| Enterprise | 10000 | 12000 |",
+      "+| Pro | 2000 | 1500 |",
+      "+| Enterprise | 20000 | 12000 |"
+    ],
+    "unasked": [
+      [
+        "| Enterprise | 10000 | 12000 |",
+        "| Enterprise | 20000 | 12000 |"
+      ]
+    ]
+  },
+  "typed": {
+    "cells_changed": 1,
+    "lines_vs_unedited_render": 1,
+    "lines_vs_source": 2,
+    "diff": [
+      "-| Pro | 1000 | 1500 |",
+      "+| Pro | 2000 | 1500 |"
+    ]
+  }
+}

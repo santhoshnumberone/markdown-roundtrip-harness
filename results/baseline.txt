@@ -1,0 +1,77 @@
+== engine ==
+benchmarks/baseline/MarkdownParser_phase1.py  9681 bytes  sha256 d0012f8de183
+python 3.10.20  markdown-it-py 4.2.0  linkify-it-py 2.2.0
+
+== cases ==
+group     case                                L0    L1    O     T     diag  ledger       what
+doc       api_spec.md                         diff  ok    ok    ok    0                  
+construct adjacent_lists_markers              diff  FAIL  FAIL  ok    0                  p +2, ul -1
+construct blockquote_code                     same  ok    ok    ok    0                  
+construct blockquote_nested                   diff  ok    ok    ok    0                  
+construct blockquote_two_lines                diff  ok    ok    ok    0                  
+construct blockquote_two_paragraphs           diff  ok    ok    ok    0                  
+construct blockquote_with_list                diff  ok    ok    ok    0                  
+construct empty_list_item                     diff  ok    ok    ok    0                  
+construct escapes_and_entities                same  ok    ok    ok    0                  
+construct footnote_definition                 same  ok    ok    ok    0                  
+construct hard_break                          same  ok    ok    ok    0                  
+construct hr_asterisks                        diff  ok    FAIL  FAIL  1                  hr -1 | model lacks rule +1
+construct hr_inside_blockquote                diff  ok    FAIL  FAIL  1                  hr -1 | model lacks rule +1
+construct hr_variants                         diff  ok    FAIL  FAIL  3                  hr -3 | model lacks rule +3
+construct html_block_div                      diff  ok    FAIL  ok    1                  div -1
+construct html_comment                        diff  ok    FAIL  ok    1                  text: '<!-- reviewer note: check this section -' -> '<p>Closing paragr
+construct indented_code                       diff  ok    ok    ok    0                  
+construct inline_markup                       same  ok    ok    ok    0                  
+construct lazy_line_looks_like_table          same  ok    ok    ok    0                  
+construct lazy_line_looks_like_table_in_item  same  ok    ok    ok    0                  
+construct list_item_blockquote                diff  ok    FAIL  FAIL  0                  blockquote -1, p -2 | model lacks blockquote +1
+construct list_item_starts_with_code          diff  ok    FAIL  FAIL  0                  code -1, pre -1 | model lacks code_block +1
+construct list_item_table                     diff  ok    FAIL  FAIL  0                  p -1, table -1, tbody -1, td -1, th -1, thead -1, tr -2 | model lacks 
+construct list_item_two_paragraphs            diff  ok    FAIL  ok    0                  p -2
+construct list_item_with_code                 diff  ok    FAIL  FAIL  0                  code -1, p -1, pre -1 | model lacks code_block +1
+construct list_then_fence                     same  ok    ok    ok    0                  
+construct loose_list                          diff  ok    FAIL  ok    0                  p -2
+construct loose_list_nested                   diff  ok    FAIL  FAIL  0                  code -1, p -2, pre -1 | model lacks code_block +1
+construct mixed_nesting                       diff  ok    ok    ok    0                  
+construct nested_fence                        diff  FAIL  FAIL  ok    0                  code +1, pre +1
+construct nested_fence_4_backticks            diff  FAIL  FAIL  ok    0                  code +1, pre +1
+construct ordered_item_10_nested              diff  FAIL  FAIL  ok    0                  text: '<li>item 10' -> '<li>item 10</li>'
+construct ordered_nine_to_ten                 diff  ok    FAIL  ok    0                  ol[start] -1
+construct ordered_start_at_0                  diff  ok    FAIL  ok    0                  ol[start] -1
+construct ordered_start_at_3                  diff  ok    FAIL  ok    0                  ol[start] -1
+construct reference_link                      diff  ok    FAIL  ok    0                  a -1
+construct setext_heading_trailing_hash        diff  FAIL  FAIL  ok    0                  text: '<h2>Issue #</h2>' -> '<h2>Issue</h2>'
+construct setext_heading_two_lines            diff  FAIL  FAIL  ok    0                  p +1
+construct setext_headings                     diff  ok    ok    ok    0                  
+construct star_bullets                        diff  ok    ok    ok    0                  
+construct table_alignment                     diff  ok    FAIL  ok    0                  td[style] -2, th[style] -2
+construct table_center_alignment              diff  ok    FAIL  ok    0                  td[style] -3, th[style] -3
+construct table_escaped_pipe                  diff  FAIL  FAIL  ok    0                  text: '<td>x | y</td>' -> '<td>x</td>'
+construct table_ragged_rows                   diff  ok    ok    ok    0                  
+construct task_list                           same  ok    ok    ok    0                  
+construct three_deep_lists                    diff  ok    ok    ok    0                  
+construct crlf_line_endings                   diff  ok    ok    ok    0                  
+construct no_trailing_newline                 diff  ok    ok    ok    0                  
+construct empty_document                      diff  ok    ok    ok    0                  
+
+== summary ==
+cases 49 (documents 1, constructs 48)
+L0 byte-identical 9/49 | L1 ok 42/49 | O ok 24/49 | T ok 41/49
+L1 alone calls 42/49 healthy. L1, O and T all agree on 24/49.
+L1 fails            : adjacent_lists_markers, nested_fence, nested_fence_4_backticks, ordered_item_10_nested, setext_heading_trailing_hash, setext_heading_two_lines, table_escaped_pipe
+L1 ok, O or T fails : hr_asterisks, hr_inside_blockquote, hr_variants, html_block_div, html_comment, list_item_blockquote, list_item_starts_with_code, list_item_table, list_item_two_paragraphs, list_item_with_code, loose_list, loose_list_nested, ordered_nine_to_ten, ordered_start_at_0, ordered_start_at_3, reference_link, table_alignment, table_center_alignment
+  of those the parser reported nothing for: list_item_blockquote, list_item_starts_with_code, list_item_table, list_item_two_paragraphs, list_item_with_code, loose_list, loose_list_nested, ordered_nine_to_ten, ordered_start_at_0, ordered_start_at_3, reference_link, table_alignment, table_center_alignment
+crashed             : none
+failing, not in ledger.json: hr_asterisks, hr_inside_blockquote, hr_variants, html_block_div, html_comment, list_item_blockquote, list_item_starts_with_code, list_item_table, list_item_two_paragraphs, list_item_with_code, loose_list, loose_list_nested, nested_fence, nested_fence_4_backticks, ordered_item_10_nested, ordered_nine_to_ten, ordered_start_at_0, ordered_start_at_3, setext_heading_trailing_hash, table_alignment, table_center_alignment, table_escaped_pipe
+
+== ids (documents) ==
+api_spec.md          46 nodes  gaps p4-p7; not in document order li: 7 before 5
+                    insert a paragraph at the top: 7/46 existing ids change; insert a heading: 11/46
+
+== parity with Article 2's ast_reference.json (api_spec.md) ==
+nodes engine 46 / reference 46; same id at the same position 34/46
+same id, different node: li5, li6, li7
+only in engine   : list1, list2, list3, list4, list5, p10, p11, p8, p9
+only in reference: lst1, lst2, lst3, lst4, lst5, p4, p5, p6, p7
+
+wrote results/baseline.json

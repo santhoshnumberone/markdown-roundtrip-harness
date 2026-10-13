@@ -1,0 +1,2 @@
+markdown-it-py[linkify]>=3.0,<5
+pytest>=8.0

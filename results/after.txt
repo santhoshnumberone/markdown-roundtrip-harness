@@ -1,0 +1,84 @@
+== engine ==
+MarkdownParser.py  11868 bytes  sha256 9fc96532fb57
+python 3.10.20  markdown-it-py 4.2.0  linkify-it-py 2.2.0
+
+== cases ==
+group     case                                L0    L1    O     T     diag  ledger       what
+doc       api_spec.md                         diff  ok    ok    ok    0     normalized   table separator row is rewritten
+construct adjacent_lists_markers              diff  FAIL  FAIL  ok    0     limitation   p +2, ul -1
+construct blockquote_code                     same  ok    ok    ok    0                  
+construct blockquote_nested                   same  ok    ok    ok    0                  
+construct blockquote_two_lines                same  ok    ok    ok    0                  
+construct blockquote_two_paragraphs           same  ok    ok    ok    0                  
+construct blockquote_with_list                same  ok    ok    ok    0                  
+construct empty_list_item                     same  ok    ok    ok    0                  
+construct escapes_and_entities                same  ok    ok    ok    0                  
+construct footnote_definition                 same  ok    ok    ok    0                  
+construct hard_break                          same  ok    ok    ok    0                  
+construct hr_asterisks                        same  ok    ok    ok    0                  
+construct hr_inside_blockquote                same  ok    ok    ok    0                  
+construct hr_variants                         same  ok    ok    ok    0                  
+construct html_block_div                      same  ok    ok    ok    0                  
+construct html_comment                        same  ok    ok    ok    0                  
+construct indented_code                       diff  ok    ok    ok    0     normalized   an indented code block is written as a fence
+construct inline_markup                       same  ok    ok    ok    0                  
+construct lazy_line_looks_like_table          diff  FAIL  FAIL  ok    0     limitation   table +1, th +1, thead +1, tr +1
+construct lazy_line_looks_like_table_in_item  diff  FAIL  FAIL  ok    0     limitation   table +1, th +1, thead +1, tr +1
+construct list_item_blockquote                same  ok    ok    ok    0                  
+construct list_item_starts_with_code          same  ok    ok    ok    0                  
+construct list_item_table                     diff  ok    ok    ok    0     normalized   table separator row is rewritten
+construct list_item_two_paragraphs            same  ok    ok    ok    0                  
+construct list_item_with_code                 same  ok    ok    ok    0                  
+construct list_then_fence                     same  ok    ok    ok    0                  
+construct loose_list                          same  ok    ok    ok    0                  
+construct loose_list_nested                   same  ok    ok    ok    0                  
+construct mixed_nesting                       same  ok    ok    ok    0                  
+construct nested_fence                        diff  ok    ok    ok    0     normalized   a ~~~ fence is written with four backticks because the code contains `
+construct nested_fence_4_backticks            same  ok    ok    ok    0                  
+construct ordered_item_10_nested              same  ok    ok    ok    0                  
+construct ordered_nine_to_ten                 same  ok    ok    ok    0                  
+construct ordered_start_at_0                  same  ok    ok    ok    0                  
+construct ordered_start_at_3                  same  ok    ok    ok    0                  
+construct reference_link                      diff  ok    FAIL  ok    1     limitation   a -1
+construct setext_heading_trailing_hash        diff  ok    ok    ok    0     normalized   setext headings are written as # headings; a trailing # is escaped
+construct setext_heading_two_lines            diff  ok    FAIL  ok    0     limitation   text: '<h1>Line one' -> '<h1>Line one line two</h1>'
+construct setext_headings                     diff  ok    ok    ok    0     normalized   setext headings are written as # headings
+construct star_bullets                        diff  ok    ok    ok    0     normalized   * bullets become -
+construct table_alignment                     diff  ok    ok    ok    0     normalized   table padding and separator rows are rewritten
+construct table_center_alignment              diff  ok    ok    ok    0     normalized   table separator row is rewritten
+construct table_escaped_pipe                  diff  ok    ok    ok    0     normalized   table separator row is rewritten
+construct table_ragged_rows                   diff  ok    ok    ok    0     normalized   short rows are padded to the header width; cells beyond it are dropped
+construct task_list                           same  ok    ok    ok    0                  
+construct three_deep_lists                    same  ok    ok    ok    0                  
+construct crlf_line_endings                   diff  ok    ok    ok    0     normalized   CRLF becomes LF
+construct no_trailing_newline                 diff  ok    ok    ok    0     normalized   a final newline is added
+construct empty_document                      diff  ok    ok    ok    0     normalized   an empty document renders as a single newline
+
+== summary ==
+cases 49 (documents 1, constructs 48)
+L0 byte-identical 30/49 | L1 ok 46/49 | O ok 44/49 | T ok 49/49
+L1 alone calls 46/49 healthy. L1, O and T all agree on 44/49.
+L1 fails            : adjacent_lists_markers, lazy_line_looks_like_table, lazy_line_looks_like_table_in_item
+L1 ok, O or T fails : reference_link, setext_heading_two_lines
+  of those the parser reported nothing for: setext_heading_two_lines
+crashed             : none
+failing, not in ledger.json: none
+
+== ids (documents) ==
+api_spec.md          46 nodes  unique, gap-free, document order
+                    insert a paragraph at the top: 7/46 existing ids change; insert a heading: 11/46
+
+== parity with Article 2's ast_reference.json (api_spec.md) ==
+nodes engine 46 / reference 46; same id at the same position 46/46
+same id, different node: none
+only in engine   : none
+only in reference: none
+
+== simulated regressions on api_spec.md (variants written from ARCHITECTURE.md, not the original code) ==
+variant                                 L0    L1    O     T     caught by
+table not parsed (commonmark preset)    same  ok    ok    FAIL  T
+blockquote demoted to paragraph         diff  ok    FAIL  FAIL  O, T
+nested lists dropped                    diff  ok    FAIL  FAIL  O, T
+caught by O or T: 3/3; caught by L1: 0/3
+
+wrote results/after.json
