@@ -4,7 +4,7 @@ A typed document model for Markdown (`Node` and `Document` over markdown-it-py),
 
 > Scope note: the checks, cases and fixes here were designed around one document, Part 2's `api_spec.md`, plus 48 small constructs and seeded random documents. They need testing and validation on other kinds of documents before anyone relies on them.
 
-**[Medium article — [My Round-Trip Test Passed While My Parser Was Losing Information]([https://medium.com/p/af62650b454c/edit](https://medium.com/@santhoshnumber1/my-round-trip-test-passed-while-my-parser-was-losing-information-af62650b454c))]**
+**Medium article — [My Round-Trip Test Passed While My Parser Was Losing Information](https://medium.com/@santhoshnumber1/my-round-trip-test-passed-while-my-parser-was-losing-information-af62650b454c)**
 
 ![L1 passes, the oracle and typed checks fail](docs/03-selftest.gif)
 
